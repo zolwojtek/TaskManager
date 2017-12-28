@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TaskManagerDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Task">
+    <Key>
+      <PropertyRef Name="taskID" />
+    </Key>
+    <Property Name="taskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="content" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="dueDate" Type="DateTime" Precision="0" />
+    <Property Name="priority" Type="Byte" />
+    <Property Name="status" Type="Byte" />
+  </EntityType>
+  <EntityContainer Name="TaskManagerDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Tasks" EntityType="Self.Task" />
+    <FunctionImport Name="spTaskDelete">
+      <Parameter Name="taskID" Mode="InOut" Type="Int32" />
+      <Parameter Name="content" Mode="In" Type="String" />
+      <Parameter Name="dueDate" Mode="In" Type="DateTime" />
+      <Parameter Name="priority" Mode="In" Type="Byte" />
+      <Parameter Name="status" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spTaskInsert">
+      <Parameter Name="taskID" Mode="InOut" Type="Int32" />
+      <Parameter Name="content" Mode="In" Type="String" />
+      <Parameter Name="dueDate" Mode="In" Type="DateTime" />
+      <Parameter Name="priority" Mode="In" Type="Byte" />
+      <Parameter Name="status" Mode="In" Type="Byte" />
+    </FunctionImport>
+    <FunctionImport Name="spTaskUpdate">
+      <Parameter Name="taskID" Mode="InOut" Type="Int32" />
+      <Parameter Name="content" Mode="In" Type="String" />
+      <Parameter Name="dueDate" Mode="In" Type="DateTime" />
+      <Parameter Name="priority" Mode="In" Type="Byte" />
+      <Parameter Name="status" Mode="In" Type="Byte" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

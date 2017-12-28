@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TasksModelStoreContainer" CdmEntityContainer="TaskContext">
+    <EntitySetMapping Name="Tasks">
+      <EntityTypeMapping TypeName="TasksModel.Task">
+        <MappingFragment StoreEntitySet="Tasks">
+          <ScalarProperty Name="taskID" ColumnName="taskID" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="dueDate" ColumnName="dueDate" />
+          <ScalarProperty Name="priority" ColumnName="priority" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spTaskDelete" FunctionName="TasksModel.Store.spTaskDelete" />
+    <FunctionImportMapping FunctionImportName="spTaskInsert" FunctionName="TasksModel.Store.spTaskInsert" />
+    <FunctionImportMapping FunctionImportName="spTaskUpdate" FunctionName="TasksModel.Store.spTaskUpdate" />
+  </EntityContainerMapping>
+</Mapping>

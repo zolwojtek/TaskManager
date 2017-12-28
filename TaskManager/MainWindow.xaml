@@ -1,0 +1,79 @@
+﻿<controls:MetroWindow x:Name="MainWindowForm" x:Class="TaskManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:TaskManager"
+        mc:Ignorable="d"
+        Title="Task Manager" Height="500" Width="900" MinWidth="800" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Visible" MinHeight="400" HorizontalContentAlignment="Stretch" Background="#FFEEEEEE">
+    <Window.Resources>
+        <CollectionViewSource x:Key="taskViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Task}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource taskViewSource}">
+        <Grid x:Name="MainWindowContainer" Width="900" Background="#FFFEFEFE">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="label" Content="Filtr by task status:" HorizontalAlignment="Left" Height="31" Margin="42,70,0,0" VerticalAlignment="Top" Width="177"/>
+            <Button x:Name="ShowAllButton" Content="Show All" HorizontalAlignment="Left" Margin="42,40,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.851,0.479" Click="ShowAllButton_Click" Height="30" MinWidth="75" MinHeight="20"/>
+            <Button x:Name="ShowInProgressButton" Content="In progress" HorizontalAlignment="Left" Margin="122,106,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.851,0.479" Click="ShowInProgressButton_Click" Height="30" MinWidth="75" MinHeight="20"/>
+            <Button x:Name="ShowDoneButton" Content="Done" HorizontalAlignment="Left" Margin="202,106,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.851,0.479" Click="ShowDoneButton_Click" Height="30" MinWidth="75" MinHeight="20"/>
+            <DataGrid x:Name="TaskDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="42,142,42,71" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False" SelectionChanged="TaskDataGrid_SelectionChanged" CellEditEnding="TaskDataGrid_CellEditEnding" CanUserDeleteRows="False" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <DataGrid.Resources>
+                    <!--<Style x:Key="wordWrapStyleView" TargetType="{x:Type TextBlock}">
+                        <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+                    </Style>-->
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn x:Name="contentColumn" Binding="{Binding content}" Header="content" Width="5*"/>
+                     <!--ElementStyle="{StaticResource wordWrapStyleView}"-->
+                    <DataGridTemplateColumn x:Name="dueDateColumn" Header="due Date" Width="2*" CanUserSort="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding dueDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" CalendarClosed="DatePicker_CalendarClosed"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="priorityColumn" Header="priority" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox Loaded="PriorityComboBox_Loaded" SelectionChanged="ComboBox_SelectionChanged_1" >
+                                    <ComboBoxItem Content="{Binding priority}" IsSelected="True" />
+                                </ComboBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn x:Name="statusColumn" Header="status" Width="*" CanUserSort="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox x:Name="statusComboBox" Loaded="StatusComboBox_Loaded" SelectionChanged="ComboBox_SelectionChanged">
+                                    <ComboBoxItem Content="{Binding status}" IsSelected="True"/>
+                                </ComboBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" Click="DeleteButton_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+            <Button Click="ShowNewTaskDialog_Click" Content="Add New Task" Margin="0,30,42,0" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right" Width="100" MinWidth="100" MinHeight="50" />
+            <Label x:Name="label_Copy" Content="Filtr by task priority:" HorizontalAlignment="Left" Height="31" Margin="374,70,0,0" VerticalAlignment="Top" Width="177"/>
+            <Button x:Name="ShowLowPrioButton" Content="Low" HorizontalAlignment="Left" Margin="374,106,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.851,0.479" Click="ShowLowPrioButton_Click" Height="30" MinWidth="75" MinHeight="20"/>
+            <Button x:Name="ShowNormalPrioButton" Content="Normal" HorizontalAlignment="Left" Margin="457,106,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.851,0.479" Click="ShowNormalPrioButton_Click" Height="30" MinWidth="75" MinHeight="20"/>
+            <Button x:Name="ShowHighPrioButton" Content="High" HorizontalAlignment="Left" Margin="537,106,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="0.851,0.479" Click="ShowHighPrioButton_Click" Height="30" MinWidth="75" MinHeight="20"/>
+            <Button x:Name="ShowNewButton" Content="New" HorizontalAlignment="Left" Margin="42,106,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.851,0.479" Click="ShowNewButton_Click" Height="30" MinWidth="75" MinHeight="20"/>
+
+        </Grid>
+        <local:NewTaskDialog x:Name="NewTaskDialog" Margin="0,0,0,0" />
+    </Grid>
+
+</controls:MetroWindow>
