@@ -12,22 +12,5 @@
   </EntityType>
   <EntityContainer Name="TaskContext" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Tasks" EntityType="Self.Task" />
-    <FunctionImport Name="spTaskDelete">
-      <Parameter Name="taskID" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="spTaskInsert">
-      <Parameter Name="taskID" Mode="In" Type="Int32" />
-      <Parameter Name="content" Mode="In" Type="String" />
-      <Parameter Name="dueDate" Mode="In" Type="DateTime" />
-      <Parameter Name="priority" Mode="In" Type="Byte" />
-      <Parameter Name="status" Mode="In" Type="Byte" />
-    </FunctionImport>
-    <FunctionImport Name="spTaskUpdate">
-      <Parameter Name="taskID" Mode="In" Type="Int32" />
-      <Parameter Name="content" Mode="In" Type="String" />
-      <Parameter Name="dueDate" Mode="In" Type="DateTime" />
-      <Parameter Name="priority" Mode="In" Type="Byte" />
-      <Parameter Name="status" Mode="In" Type="Byte" />
-    </FunctionImport>
   </EntityContainer>
 </Schema>

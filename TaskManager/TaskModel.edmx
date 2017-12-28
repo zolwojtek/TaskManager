@@ -15,23 +15,6 @@
           <Property Name="priority" Type="tinyint" Nullable="false" />
           <Property Name="status" Type="tinyint" Nullable="false" />
         </EntityType>
-        <Function Name="spTaskDelete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="taskID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="spTaskInsert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="taskID" Type="int" Mode="In" />
-          <Parameter Name="content" Type="varchar" Mode="In" />
-          <Parameter Name="dueDate" Type="date" Mode="In" />
-          <Parameter Name="priority" Type="tinyint" Mode="In" />
-          <Parameter Name="status" Type="tinyint" Mode="In" />
-        </Function>
-        <Function Name="spTaskUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="taskID" Type="int" Mode="In" />
-          <Parameter Name="content" Type="varchar" Mode="In" />
-          <Parameter Name="dueDate" Type="date" Mode="In" />
-          <Parameter Name="priority" Type="tinyint" Mode="In" />
-          <Parameter Name="status" Type="tinyint" Mode="In" />
-        </Function>
         <EntityContainer Name="TasksModelStoreContainer">
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
@@ -52,23 +35,6 @@
         </EntityType>
         <EntityContainer Name="TaskContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Tasks" EntityType="Self.Task" />
-          <FunctionImport Name="spTaskDelete">
-            <Parameter Name="taskID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="spTaskInsert">
-            <Parameter Name="taskID" Mode="In" Type="Int32" />
-            <Parameter Name="content" Mode="In" Type="String" />
-            <Parameter Name="dueDate" Mode="In" Type="DateTime" />
-            <Parameter Name="priority" Mode="In" Type="Byte" />
-            <Parameter Name="status" Mode="In" Type="Byte" />
-          </FunctionImport>
-          <FunctionImport Name="spTaskUpdate">
-            <Parameter Name="taskID" Mode="In" Type="Int32" />
-            <Parameter Name="content" Mode="In" Type="String" />
-            <Parameter Name="dueDate" Mode="In" Type="DateTime" />
-            <Parameter Name="priority" Mode="In" Type="Byte" />
-            <Parameter Name="status" Mode="In" Type="Byte" />
-          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -87,9 +53,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="spTaskDelete" FunctionName="TasksModel.Store.spTaskDelete" />
-          <FunctionImportMapping FunctionImportName="spTaskInsert" FunctionName="TasksModel.Store.spTaskInsert" />
-          <FunctionImportMapping FunctionImportName="spTaskUpdate" FunctionName="TasksModel.Store.spTaskUpdate" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

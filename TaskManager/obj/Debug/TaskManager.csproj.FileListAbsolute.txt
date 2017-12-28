@@ -21,10 +21,9 @@ C:\Users\Admin\source\repos\TaskManager\TaskManager\obj\Debug\TaskManager.exe
 C:\Users\Admin\source\repos\TaskManager\TaskManager\obj\Debug\TaskManager.pdb
 C:\Users\Admin\source\repos\TaskManager\TaskManager\obj\Debug\NewTaskDialog.g.cs
 C:\Users\Admin\source\repos\TaskManager\TaskManager\obj\Debug\NewTaskDialog.baml
-C:\Users\Admin\source\repos\TaskManager\TaskManager\bin\Debug\FirstFloor.ModernUI.dll
 C:\Users\Admin\source\repos\TaskManager\TaskManager\bin\Debug\MahApps.Metro.dll
 C:\Users\Admin\source\repos\TaskManager\TaskManager\bin\Debug\System.Windows.Interactivity.dll
-C:\Users\Admin\source\repos\TaskManager\TaskManager\bin\Debug\FirstFloor.ModernUI.xml
 C:\Users\Admin\source\repos\TaskManager\TaskManager\bin\Debug\MahApps.Metro.pdb
 C:\Users\Admin\source\repos\TaskManager\TaskManager\bin\Debug\MahApps.Metro.xml
 C:\Users\Admin\source\repos\TaskManager\TaskManager\obj\Debug\App.baml
+C:\Users\Admin\source\repos\TaskManager\TaskManager\obj\Debug\TaskManager.csprojResolveAssemblyReference.cache

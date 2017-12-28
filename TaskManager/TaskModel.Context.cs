@@ -12,8 +12,6 @@ namespace TaskManager
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
     public partial class TaskContext : DbContext
     {
@@ -28,64 +26,5 @@ namespace TaskManager
         }
     
         public virtual DbSet<Task> Tasks { get; set; }
-    
-        public virtual int spTaskDelete(Nullable<int> taskID)
-        {
-            var taskIDParameter = taskID.HasValue ?
-                new ObjectParameter("taskID", taskID) :
-                new ObjectParameter("taskID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTaskDelete", taskIDParameter);
-        }
-    
-        public virtual int spTaskInsert(Nullable<int> taskID, string content, Nullable<System.DateTime> dueDate, Nullable<byte> priority, Nullable<byte> status)
-        {
-            var taskIDParameter = taskID.HasValue ?
-                new ObjectParameter("taskID", taskID) :
-                new ObjectParameter("taskID", typeof(int));
-    
-            var contentParameter = content != null ?
-                new ObjectParameter("content", content) :
-                new ObjectParameter("content", typeof(string));
-    
-            var dueDateParameter = dueDate.HasValue ?
-                new ObjectParameter("dueDate", dueDate) :
-                new ObjectParameter("dueDate", typeof(System.DateTime));
-    
-            var priorityParameter = priority.HasValue ?
-                new ObjectParameter("priority", priority) :
-                new ObjectParameter("priority", typeof(byte));
-    
-            var statusParameter = status.HasValue ?
-                new ObjectParameter("status", status) :
-                new ObjectParameter("status", typeof(byte));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTaskInsert", taskIDParameter, contentParameter, dueDateParameter, priorityParameter, statusParameter);
-        }
-    
-        public virtual int spTaskUpdate(Nullable<int> taskID, string content, Nullable<System.DateTime> dueDate, Nullable<byte> priority, Nullable<byte> status)
-        {
-            var taskIDParameter = taskID.HasValue ?
-                new ObjectParameter("taskID", taskID) :
-                new ObjectParameter("taskID", typeof(int));
-    
-            var contentParameter = content != null ?
-                new ObjectParameter("content", content) :
-                new ObjectParameter("content", typeof(string));
-    
-            var dueDateParameter = dueDate.HasValue ?
-                new ObjectParameter("dueDate", dueDate) :
-                new ObjectParameter("dueDate", typeof(System.DateTime));
-    
-            var priorityParameter = priority.HasValue ?
-                new ObjectParameter("priority", priority) :
-                new ObjectParameter("priority", typeof(byte));
-    
-            var statusParameter = status.HasValue ?
-                new ObjectParameter("status", status) :
-                new ObjectParameter("status", typeof(byte));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTaskUpdate", taskIDParameter, contentParameter, dueDateParameter, priorityParameter, statusParameter);
-        }
     }
 }
