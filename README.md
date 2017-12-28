@@ -2,6 +2,7 @@
 
 Program działa z bazą dabych MSSQL, którą należy utorzyć na lokalnym serwerze.
 
+(dla czytelnego widoku kodu, należy wybrać tryb Raw podglądu tego pliku)
 Należy na nim wywołac kolejno polecenia:
 -utworzenie bazy danych
 
